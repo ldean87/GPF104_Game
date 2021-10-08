@@ -5,6 +5,9 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
+    private GameManager myGameManager; //A reference to the GameManager in the scene.
+    private UI UIElements; //A reference to the GameManager in the scene.
+
     [Header("Player Component Variables")]
     public Rigidbody2D Character;
     public float movementSpeed;
@@ -12,32 +15,33 @@ public class Player : MonoBehaviour
     public int playerLivesRemaining; //PLayers actual lives remaining.
     public bool playerIsAlive = true; //Is the player currently alive?
     public bool playerCanMove; //Can the player currently move?
-    public int maxSpeed;
     private Animator PlayerAnimation;
     private SpriteRenderer PlayerSprites;
-    public bool isGrounded;
-    public float jumpCoolDown;
+    private float reso;
+
+
 
 
 
     // Start is called before the first frame update
     void Start()
     {
+        UIElements = FindObjectOfType<UI>();
+        myGameManager = FindObjectOfType<GameManager>();
         playerLivesRemaining = playerTotalLives;
         Character = GetComponent<Rigidbody2D>();
         PlayerAnimation = gameObject.GetComponent<Animator>();
         PlayerSprites = gameObject.GetComponent<SpriteRenderer>();
         PlayerAnimation.SetBool("Walk", false);
         movementSpeed = 10.0f;
-        maxSpeed = 10;
-        isGrounded = true;
-        jumpCoolDown = 0.0f;
+        reso = (float)Screen.height;
     }
+
+
 
     // Update is called once per frame
     void Update()
     {
-        jumpCoolDown += Time.deltaTime;
         PlayerAnimation.SetTrigger("Fly");
         transform.position += Vector3.right * movementSpeed * Time.deltaTime;
 
@@ -62,60 +66,20 @@ public class Player : MonoBehaviour
 
 
 
-
-        //if (Input.GetKey(KeyCode.UpArrow))
-        //{
-        //    transform.position += Vector3.up * movementSpeed * Time.deltaTime;
-        //    PlayerSprites.flipX = false;
-        //    PlayerAnimation.SetBool("Walk", true);
-        //}
-        //if (Input.GetKey(KeyCode.DownArrow))
-        //{
-        //    transform.position += -Vector3.up * movementSpeed * Time.deltaTime;
-        //    PlayerSprites.flipX = false;
-        //    PlayerAnimation.SetBool("Walk", true);
-        //}
-
-
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButton(0))
         {
-            Character.AddForce(transform.up * 30.0f);
-            PlayerAnimation.SetTrigger("Fly");
-            jumpCoolDown = 0.0f;
+            if (reso <= 720)
+                Character.AddForce(transform.up * reso / 30);
+
+            if (reso > 720 && reso <= 1080)
+                Character.AddForce(transform.up * reso / 37.5f);
+
+            if (reso > 1080 && reso <= 1440)
+                Character.AddForce(transform.up * reso / 45);
+
+            if (reso > 1440 && reso <= 2160)
+                Character.AddForce(transform.up * reso / 60);
         }
-
-
-        //if (isGrounded != true)
-        //{
-        //    if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.LeftArrow))
-        //    {
-        //        PlayerAnimation.SetBool("Walk", true);
-        //    }
-        //}
-
-
-        //if (jumpCoolDown >= 1.5f) // 1.5 seconds for jump cooldown
-        //{
-        //    if (isGrounded != true && Input.GetKey(KeyCode.RightArrow))
-        //    {
-        //        if (Input.GetKeyDown(KeyCode.Space))
-        //        {
-        //            Character.AddForce(transform.up * 50.0f);
-        //            PlayerAnimation.SetTrigger("Fly"); 
-        //            jumpCoolDown = 0.0f;
-        //        }
-        //    }
-        //    if (isGrounded != true && Input.GetKey(KeyCode.LeftArrow))
-        //    {
-        //        if (Input.GetKeyDown(KeyCode.Space))
-        //        {
-        //            Character.AddForce(-transform.right * 450.0f);
-        //            Character.AddForce(transform.up * 250.0f);
-        //            PlayerAnimation.SetTrigger("Fly");
-        //            jumpCoolDown = 0.0f;
-        //        }
-        //    }
-        //}
 
     }
 
