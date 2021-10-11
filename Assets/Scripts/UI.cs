@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ExceptionServices;
-using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,7 +30,7 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dist = (int)target.position.x / 2;
-        score.text = dist.ToString();
+        dist = (int)target.position.x / 5;
+        score.text = dist.ToString() + "m";
     }
 }

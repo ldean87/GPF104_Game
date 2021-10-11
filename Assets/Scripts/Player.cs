@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -17,7 +19,8 @@ public class Player : MonoBehaviour
     public bool playerCanMove; //Can the player currently move?
     private Animator PlayerAnimation;
     private SpriteRenderer PlayerSprites;
-    private float reso;
+    public float touchCoolDown;
+    public float jumpForce;
 
 
 
@@ -32,18 +35,34 @@ public class Player : MonoBehaviour
         Character = GetComponent<Rigidbody2D>();
         PlayerAnimation = gameObject.GetComponent<Animator>();
         PlayerSprites = gameObject.GetComponent<SpriteRenderer>();
-        PlayerAnimation.SetBool("Walk", false);
-        movementSpeed = 10.0f;
-        reso = (float)Screen.height;
+        PlayerAnimation.SetTrigger("Fly");
+        movementSpeed = 16.0f;
+        touchCoolDown = 0.0f;
+        jumpForce = 12.0f;
     }
 
 
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        PlayerAnimation.SetTrigger("Fly");
         transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+        touchCoolDown += 1 * Time.deltaTime;
+
+        if (touchCoolDown >= 0.1f)
+        {
+            if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButton(0)) {
+                Character.velocity = new Vector2(0, jumpForce);
+                touchCoolDown = 0.0f;
+            }
+        }
+    }
+
+
+
+
+    void collisionDetection()
+    {
 
         // Handling the Ray Cast Collision detection for the UP direction
         RaycastHit2D upHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), Vector2.up, 0.5f);
@@ -64,23 +83,6 @@ public class Player : MonoBehaviour
         RaycastHit2D rightHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), -Vector2.left, 1.2f);
         Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), transform.position + new Vector3(1.2f, 0.0f, 0), Color.green);
 
-
-
-        if (Input.GetKey(KeyCode.Space) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButton(0))
-        {
-            if (reso <= 720)
-                Character.AddForce(transform.up * reso / 30);
-
-            if (reso > 720 && reso <= 1080)
-                Character.AddForce(transform.up * reso / 37.5f);
-
-            if (reso > 1080 && reso <= 1440)
-                Character.AddForce(transform.up * reso / 45);
-
-            if (reso > 1440 && reso <= 2160)
-                Character.AddForce(transform.up * reso / 60);
-        }
-
     }
-
 }
+

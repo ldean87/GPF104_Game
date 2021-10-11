@@ -14,14 +14,12 @@ public class Camera_Follow : MonoBehaviour
 
     private void Awake()
     {
-        smoothFactor = 5.0f;
-        offset = new Vector3(8.0f, -1.0f, -1.0f);
+        smoothFactor = 6.0f;
+        offset = new Vector3(15.0f, -1.0f, -1.0f);
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        //transform.position = new Vector3(playerDragon.position.x, 3.5f, transform.position.z);
-        
         Follow();
     }
 
