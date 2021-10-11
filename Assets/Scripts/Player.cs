@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     private SpriteRenderer PlayerSprites;
     public float touchCoolDown;
     public float jumpForce;
+    public bool collisionToken;
 
 
 
@@ -39,6 +40,7 @@ public class Player : MonoBehaviour
         movementSpeed = 16.0f;
         touchCoolDown = 0.0f;
         jumpForce = 12.0f;
+        collisionToken = false;
     }
 
 
@@ -48,6 +50,8 @@ public class Player : MonoBehaviour
     {
         transform.position += Vector3.right * movementSpeed * Time.deltaTime;
         touchCoolDown += 1 * Time.deltaTime;
+
+        collisionDetection();
 
         if (touchCoolDown >= 0.1f)
         {
@@ -82,6 +86,19 @@ public class Player : MonoBehaviour
         // Handling the Ray Cast Collision detection for the RIGHT direction
         RaycastHit2D rightHit = Physics2D.Raycast(new Vector2(transform.position.x, transform.position.y), -Vector2.left, 1.2f);
         Debug.DrawLine(new Vector2(transform.position.x, transform.position.y), transform.position + new Vector3(1.2f, 0.0f, 0), Color.green);
+
+
+
+
+        if (upHit.collider != null && transform.position.y <= -1.4f || downHit.collider != null && transform.position.y <= -1.1f ||
+            leftHit.collider != null && transform.position.y <= -1.1f || rightHit.collider != null && transform.position.y <= -1.1f)
+        {
+            collisionToken = true;
+        }
+        else
+        {
+            collisionToken = false;
+        }
 
     }
 }

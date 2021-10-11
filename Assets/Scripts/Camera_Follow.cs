@@ -15,7 +15,7 @@ public class Camera_Follow : MonoBehaviour
     private void Awake()
     {
         smoothFactor = 6.0f;
-        offset = new Vector3(15.0f, -1.0f, -1.0f);
+        offset = new Vector3(15.0f, 0.0f, -1.0f);
     }
 
     // Update is called once per frame
