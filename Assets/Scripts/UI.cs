@@ -13,9 +13,11 @@ public class UI : MonoBehaviour
 
 
     [Header("UI Components & Variables")]
+    public Text distance; // A text holder for the current score
     public Text score; // A text holder for the current score
     public Transform target;
     private int dist;
+    private int tokenScore;
     //public Text lives; // A text holder for the current amount of lives
 
 
@@ -31,6 +33,8 @@ public class UI : MonoBehaviour
     void Update()
     {
         dist = (int)target.position.x / 5;
-        score.text = dist.ToString() + "m";
+        tokenScore = myGameManager.currentScore;
+        distance.text = dist.ToString() + "m";
+        score.text = tokenScore.ToString() + " T";
     }
 }

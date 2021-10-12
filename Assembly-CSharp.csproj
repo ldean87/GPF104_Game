@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,16 +53,21 @@
     <UnityVersion>2020.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Scripts\Destroy_Particles.cs" />
+    <Compile Include="Assets\Scripts\TokenCollect.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
-    <Compile Include="Assets\Scripts\Tokens.cs" />
+    <Compile Include="Assets\Scripts\TokenSpawner.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Camera_Follow.cs" />
+    <Compile Include="Assets\LightRays2D\Script\LightRays2DCanvas.cs" />
+    <Compile Include="Assets\LightRays2D\Script\LightRays2DAbstract.cs" />
+    <Compile Include="Assets\LightRays2D\Script\LightRays2D.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\LightRays2D\Readme.txt" />
+    <None Include="Assets\LightRays2D\Shaders\LightRays.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -650,6 +655,12 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -710,11 +721,17 @@
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.2D.Animation.Triangle.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Triangle.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Unity.2D.Animation.Runtime">
       <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
     </Reference>
     <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
