@@ -5,19 +5,21 @@ using UnityEngine;
 public class TokenCollect : MonoBehaviour
 {
     private GameManager myGameManager; //A reference to the GameManager in the scene.
+    public Player Player; // A reference to the Playable Character in the scene.
+    public GameObject Points; //This object is used to hold clones of the prefab called "Token"
+
 
 
     [Header("Audio Sources")]
-    public AudioSource tokenCollectSound;
+    AudioSource audioSource;
+    public AudioClip tokenCollectSound;
 
 
     private void Start()
     {
         myGameManager = FindObjectOfType<GameManager>();
-
-        // Initialising multiple Audio Components
-        AudioSource[] allAudio = GetComponents<AudioSource>();
-        tokenCollectSound = allAudio[0];
+        Player = FindObjectOfType<Player>();
+        audioSource = GetComponent<AudioSource>();
     }
     // Update is called once per frame
     void Update()
@@ -49,29 +51,35 @@ public class TokenCollect : MonoBehaviour
 
         if (upHit.collider != null || downHit.collider != null || leftHit.collider != null || rightHit.collider != null)
         {
-            if (tokenCollectSound.isPlaying) {
+            if (audioSource.isPlaying)
+            {
                 // Do nothing
             }
-            else {
+            else
+            {
                 playTheSound();
             }
-            StartCoroutine(Die());
+            StartCoroutine("Die");
         }
-
     }
 
     //And function itself
     IEnumerator Die()
     {
         //play your sound
-        yield return new WaitForSeconds(0.2f); //waits 0.2 seconds
+        yield return new WaitForSeconds(0.05f); //waits 0.2 seconds
         Destroy(gameObject); //this will work after 3 seconds.
         myGameManager.currentScore = myGameManager.currentScore + 10;
+        myGameManager.movementSpeed = myGameManager.movementSpeed + 0.2f;
+        Destroy(Instantiate(Points, new Vector2(Player.transform.position.x, Player.transform.position.y), Quaternion.identity), 5.0f);
+        Points.name = "10 Points";
+        Points.GetComponent<SpriteRenderer>().sortingOrder = 8;
     }
 
 
     void playTheSound()
     {
-        tokenCollectSound.Play();
+        audioSource.PlayOneShot(tokenCollectSound, 0.5f);
     }
+
 }

@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
 
     [Header("Scoring")]
     public int currentScore = 0; //The current score in this round.
+    public float movementSpeed = 0.0f;
+
+    private int previousScore;
 
     [Header("Audio Components")]
     public AudioSource bgMusic; // background music and FX
@@ -16,6 +19,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         currentScore = 0;
+        previousScore = currentScore;
+        movementSpeed = 12.0f;
         Application.targetFrameRate = 60;
 
         AudioSource[] allAudio = GetComponents<AudioSource>();
@@ -25,6 +30,17 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentScore != previousScore)
+        {
+            if (currentScore == previousScore + 10)
+            {
+                previousScore = currentScore;
+            }
+            else if (currentScore > previousScore + 10)
+            {
+                currentScore = previousScore + 10;
+            }
+        }
         
     }
 }

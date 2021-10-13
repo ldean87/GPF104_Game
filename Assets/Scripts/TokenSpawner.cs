@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TokenSpawner : MonoBehaviour
 {
-    private GameManager myGameManager; //A reference to the GameManager in the scene.
     public Player Player; // A reference to the Playable Character in the scene.
     public GameObject Token; //This object is used to hold clones of the prefab called "Token"
     private float tokenSpawnTimer = 0.0f; // This variable is used to store a spawning timer for the "Token" Prefab
@@ -15,8 +14,6 @@ public class TokenSpawner : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // Initiazliing the game manager
-        myGameManager = FindObjectOfType<GameManager>();
         Player = FindObjectOfType<Player>();
     }
 
@@ -31,7 +28,7 @@ public class TokenSpawner : MonoBehaviour
             Token.name = "Token";
             Token.GetComponent<SpriteRenderer>().sortingOrder = 8;
             tokenSpawnTimer = 0.0f;
-            tokenSpawnTimerRandomizer = Random.Range(1.5f, 3.0f);
+            tokenSpawnTimerRandomizer = Random.Range(1.0f, 3.0f);
         }
     }
 

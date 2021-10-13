@@ -53,17 +53,19 @@
     <UnityVersion>2020.3.18f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Destroy_Particles.cs" />
+    <Compile Include="Assets\LightRays2D\Script\LightRays2DCanvas.cs" />
+    <Compile Include="Assets\LightRays2D\Script\LightRays2DAbstract.cs" />
     <Compile Include="Assets\Scripts\TokenCollect.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
+    <Compile Include="Assets\LightRays2D\Script\LightRays2D.cs" />
     <Compile Include="Assets\Scripts\TokenSpawner.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Camera_Follow.cs" />
-    <Compile Include="Assets\LightRays2D\Script\LightRays2DCanvas.cs" />
-    <Compile Include="Assets\LightRays2D\Script\LightRays2DAbstract.cs" />
-    <Compile Include="Assets\LightRays2D\Script\LightRays2D.cs" />
+    <Compile Include="Assets\Scripts\PointsFlip.cs" />
+    <Compile Include="Assets\Scripts\RockSpawner.cs" />
+    <Compile Include="Assets\Scripts\RockSpin.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LightRays2D\Readme.txt" />
