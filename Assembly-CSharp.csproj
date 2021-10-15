@@ -55,17 +55,24 @@
   <ItemGroup>
     <Compile Include="Assets\LightRays2D\Script\LightRays2DCanvas.cs" />
     <Compile Include="Assets\LightRays2D\Script\LightRays2DAbstract.cs" />
-    <Compile Include="Assets\Scripts\TokenCollect.cs" />
+    <Compile Include="Assets\Scripts\Start_Game.cs" />
+    <Compile Include="Assets\Scripts\Points_Move.cs" />
+    <Compile Include="Assets\Scripts\Heart_Scripts\Heart_Four.cs" />
+    <Compile Include="Assets\Scripts\Heart_Scripts\Heart_Three.cs" />
+    <Compile Include="Assets\Scripts\Token_Collect.cs" />
+    <Compile Include="Assets\Scripts\Rock_Spinner.cs" />
     <Compile Include="Assets\Scripts\UI.cs" />
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\LightRays2D\Script\LightRays2D.cs" />
-    <Compile Include="Assets\Scripts\TokenSpawner.cs" />
+    <Compile Include="Assets\Scripts\Token_Spawner.cs" />
     <Compile Include="Assets\Scripts\Parallax.cs" />
+    <Compile Include="Assets\Scripts\Heart_Scripts\Heart_One.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
     <Compile Include="Assets\Scripts\Camera_Follow.cs" />
-    <Compile Include="Assets\Scripts\PointsFlip.cs" />
-    <Compile Include="Assets\Scripts\RockSpawner.cs" />
-    <Compile Include="Assets\Scripts\RockSpin.cs" />
+    <Compile Include="Assets\Scripts\Rock_Spawner.cs" />
+    <Compile Include="Assets\Scripts\Heart_Scripts\Heart_Two.cs" />
+    <Compile Include="Assets\Scripts\UI_Scripts\Auto_Mover.cs" />
+    <Compile Include="Assets\Scripts\UI_Restart.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\LightRays2D\Readme.txt" />
@@ -758,6 +765,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{EF2AD270-F4E7-75C2-4FC3-E2026ECB650C}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

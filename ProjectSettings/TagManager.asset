@@ -6,14 +6,19 @@ TagManager:
   tags:
   - GameEnder
   - Token
+  - Floor
+  - Rock
+  - Life_One
+  - MusicPlayer
+  - GameManager
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Token
   - Water
   - UI
-  - 
+  - Player
   - 
   - 
   - 

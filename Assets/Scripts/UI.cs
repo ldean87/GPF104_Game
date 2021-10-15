@@ -14,10 +14,14 @@ public class UI : MonoBehaviour
 
     [Header("UI Components & Variables")]
     public Text distance; // A text holder for the current score
+    public Text tokens; // A text holder for the current score
     public Text score; // A text holder for the current score
+    public Text endTotalScore; // A text holder for the current score
     public Transform target;
+    public GameObject endScore;
     private int dist;
     private int tokenScore;
+    private int totalScore;
     //public Text lives; // A text holder for the current amount of lives
 
 
@@ -32,9 +36,22 @@ public class UI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        dist = (int)target.position.x / 5;
+        dist = (int)myGameManager.playerDistance;
         tokenScore = myGameManager.currentScore;
+        totalScore = (int)myGameManager.totalScore;
         distance.text = dist.ToString() + "m";
-        score.text = tokenScore.ToString() + " T";
+        tokens.text = tokenScore.ToString() + " T";
+        score.text = totalScore.ToString() + "";
+
+        if (myGameManager.dragonLives <= 0)
+        {
+            endScore.gameObject.SetActive(true);
+            endTotalScore.text = totalScore.ToString() + "";
+        }
+        else if (myGameManager.dragonLives > 0)
+        {
+            endScore.gameObject.SetActive(false);
+            endTotalScore.text = totalScore.ToString() + "";
+        }
     }
 }

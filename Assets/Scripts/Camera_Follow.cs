@@ -14,19 +14,12 @@ public class Camera_Follow : MonoBehaviour
 
     private void Awake()
     {
-        smoothFactor = 6.0f;
+        smoothFactor = 7.0f;
         offset = new Vector3(13.0f, 0.0f, -1.0f);
     }
 
     // Update is called once per frame
     void FixedUpdate() {
-        Follow();
-    }
-
-
-
-    void Follow()
-    {
         Vector3 targetPosition = target.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(transform.position, targetPosition, smoothFactor * Time.fixedDeltaTime);
         transform.position = smoothPosition;
